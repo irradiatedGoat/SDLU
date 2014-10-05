@@ -123,8 +123,8 @@ node<SpriteController>* merge(node<SpriteController>* listOne, node<SpriteContro
 	{
 		return listTwo;
 	}
-	node<SpriteController>* temp;
-	node<SpriteController>* returnVal;
+	node<SpriteController>* temp = NULL;
+	node<SpriteController>* returnVal = NULL;
 	if(listOne->element->zCurr > listTwo->element->zCurr)
 	{
 		temp = listTwo;
@@ -257,7 +257,9 @@ void* sortLinkedList(LinkedList<SpriteController>* temp)
 
 void Window::ZOrderSort()
 {
-	if(!sorted)
+	return;
+
+	if (!sorted)
 	{
 		sortLinkedList(spriteList);
 		sorted = true;

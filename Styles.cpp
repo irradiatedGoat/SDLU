@@ -117,7 +117,7 @@ int enemyUpdate(double delta, sBasic* args, SpriteController* partner)
 
 		SpriteController* b = new SpriteController(tmp->bullet, bVals->makeBasic(), basicUpdate, 0, 0, partner->xCurr, partner->yCurr + 20, 1);
 		b->setCurrentState(1);
-		tmp->reg->add(b, true, ENEMYLIST);
+		tmp->reg->add(b);
 	}
 	if(tmp->isExiting)
 	{

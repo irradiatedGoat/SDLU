@@ -11,8 +11,8 @@ node<element>* merge(node<element>* listOne, node<element>* listTwo)
 	{
 		return listTwo;
 	}
-	node<element>* temp;
-	node<element>* returnVal;
+	node<element>* temp = new node<element>();
+	node<element>* returnVal = new node<element>();
 	if(listOne->element->index > listTwo->element->index)
 	{
 		temp = listTwo;
