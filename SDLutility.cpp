@@ -31,6 +31,7 @@ void frameAdvance()
 {
 	frame++;
 };
+
 double frameRate()
 {
 	int tmp = SDL_GetTicks();

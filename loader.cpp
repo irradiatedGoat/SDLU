@@ -33,8 +33,9 @@ bool Loader::loadFont(CScript *scr)
 	if((ptr->children->display())->value == NULL)
 		return false;
 	char* name = (ptr->children->display())->value;
-	char* buff = new char[strlen(name)+1];	//don't reference the actual char* to preserve the reference table names even after deletion of the CScript
-	strcpy(buff,name);
+	char *buff = new char[strlen(name)+1];	//don't reference the actual char* to preserve the reference table names even after deletion of the CScript
+	//strcpy(buff,name);
+	strcpy_s(buff, strlen(name)+1, name);
 	buff[strlen(name)] = '\0';
 	scr->children->beginning();
 	ptr = scr->findChild("<pointsize>");
@@ -64,6 +65,7 @@ bool Loader::loadFont(CScript *scr)
 	fontSet.addReference(&buff[0],f);
 	return true;
 }
+
 void displayScript(CScript* current)
 {
 	if(current == 0)
@@ -92,6 +94,7 @@ bool Loader::Load(char* file)
 {
 	if(!root->Load(file))		//failed to load script
 		return false;
+
 	root->children->beginning();
 	//these will break if any of these functions fail to load
 	if(!loadRectGroups(root->findChild("<rectgroups>")))
@@ -152,7 +155,8 @@ bool Loader::loadRectGroup(CScript *scr)
 		return false;
 	char* name = (ptr->children->display())->value;
 	char* buff = new char[strlen(name)+1];	//don't reference the actual char* to preserve the reference table names even after deletion of the CScript
-	strcpy(buff,name);
+	//strcpy(buff,name);
+	strcpy_s(buff, strlen(name) + 1, name);
 	buff[strlen(name)] = '\0';
 
 
@@ -222,6 +226,7 @@ bool Loader::loadRect(CScript *scr, SDL_Rect* rect)
 	rect->h = atoi((ptr->children->display())->value);
 	return true;
 }
+
 bool Loader::loadStateGroups(CScript *scr)
 {
 	if(scr==NULL)	//safety check
@@ -253,7 +258,8 @@ bool Loader::loadStateGroup(CScript *scr)
 
 	char* name = (ptr->children->display())->value;
 	char* buff = new char[strlen(name)+1];	//don't reference the actual char* to preserve the reference table names even after deletion of the CScript
-	strcpy(buff,name);
+	//strcpy(buff,name);
+	strcpy_s(buff, strlen(name) + 1, name);
 	buff[strlen(name)] = '\0';
 
 
@@ -281,6 +287,7 @@ bool Loader::loadStateGroup(CScript *scr)
 
 	return true;
 }
+
 bool Loader::loadState(CScript *scr, State *state)
 {
 //char* bitmapName, SDL_Rect* frames, int numberOfFrames,Uint32 ColorKey
@@ -362,6 +369,7 @@ bool Loader::loadState(CScript *scr, State *state)
 	cout << "State Initialization failed (check your script)" << endl;
 	return false;
 }
+
 bool Loader::loadSprites(CScript *scr)
 {
 	if(scr==NULL)	//safety check
@@ -379,6 +387,7 @@ bool Loader::loadSprites(CScript *scr)
 	}while(scr->children->next());
 	return true;
 }
+
 bool Loader::loadSprite(CScript *scr)
 {
 	Sprite* s = new Sprite;
@@ -395,7 +404,8 @@ bool Loader::loadSprite(CScript *scr)
 		return false;
 	char* name = (ptr->children->display())->value;
 	char* buff = new char[strlen(name)+1];	//don't reference the actual char* to preserve the reference table names even after deletion of the CScript
-	strcpy(buff,name);
+	//strcpy(buff,name);
+	strcpy_s(buff, strlen(name)+1, name);
 	buff[strlen(name)] = '\0';
 
 	scr->children->beginning();
